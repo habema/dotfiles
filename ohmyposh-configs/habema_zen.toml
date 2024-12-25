@@ -29,6 +29,13 @@ white = "#F1F1F0"
   newline = true
 
   [[blocks.segments]]
+    template = '({{ .Venv }}) '
+    type = 'python'
+    style = 'powerline'
+    background = 'transparent'
+    foreground = 'p:yellow'
+
+  [[blocks.segments]]
     template = '{{ .Path }}'
     foreground = 'p:blue'
     background = 'transparent'
