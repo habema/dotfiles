@@ -28,8 +28,14 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
+# Docker completions
+zinit ice as"completion"
+zinit snippet https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
+
 # Add in snippets
 zinit snippet OMZP::command-not-found
+zinit snippet OMZP::extract
+zinit snippet OMZP::colored-man-pages
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -109,6 +115,6 @@ pip3() {
     if [[ -z "$VIRTUAL_ENV" ]]; then
         echo "⚠️  Warning: pip3 is being run outside a virtual environment!"
         echo "   Consider creating a venv with: uv venv"
-fi
+    fi
     command pip3 "$@"
 }
