@@ -75,7 +75,40 @@ alias cls='clear'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-# Load pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
+# Python environment management with uv
+# Ensure ~/.local/bin is in PATH for uv-managed Python
+export PATH="$HOME/.local/bin:$PATH"
+
+
+# Warn when using python/pip outside a virtual environment
+python() {
+    if [[ -z "$VIRTUAL_ENV" ]]; then
+        echo "⚠️  Warning: python is being run outside a virtual environment!"
+        echo "   Consider creating a venv with: uv venv"
+    fi
+    command python "$@"
+}
+
+python3() {
+    if [[ -z "$VIRTUAL_ENV" ]]; then
+        echo "⚠️  Warning: python3 is being run outside a virtual environment!"
+        echo "   Consider creating a venv with: uv venv"
+    fi
+    command python3 "$@"
+}
+
+pip() {
+    if [[ -z "$VIRTUAL_ENV" ]]; then
+        echo "⚠️  Warning: pip is being run outside a virtual environment!"
+        echo "   Consider creating a venv with: uv venv"
+    fi
+    command pip "$@"
+}
+
+pip3() {
+    if [[ -z "$VIRTUAL_ENV" ]]; then
+        echo "⚠️  Warning: pip3 is being run outside a virtual environment!"
+        echo "   Consider creating a venv with: uv venv"
 fi
+    command pip3 "$@"
+}
