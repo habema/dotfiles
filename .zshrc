@@ -29,8 +29,22 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
 # Docker completions
-zinit ice as"completion"
-zinit snippet https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker
+if command -v docker &> /dev/null; then
+  local docker_completion_file="${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/completions/_docker"
+  local docker_version_file="${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/completions/.docker_version"
+  
+  mkdir -p "${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/completions"
+  
+  # Only regenerate if completion file doesn't exist or docker version changed
+  local current_version=$(docker version --format '{{.Server.Version}}' 2>/dev/null || docker version --format '{{.Client.Version}}' 2>/dev/null || echo "")
+  local cached_version=$(cat "$docker_version_file" 2>/dev/null || echo "")
+  
+  if [[ ! -f "$docker_completion_file" ]] || [[ "$current_version" != "$cached_version" ]]; then
+    docker completion zsh > "$docker_completion_file" 2>/dev/null && echo "$current_version" > "$docker_version_file" || true
+  fi
+  
+  fpath=("${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/completions" $fpath)
+fi
 
 # Add in snippets
 zinit snippet OMZP::command-not-found
