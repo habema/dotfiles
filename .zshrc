@@ -67,6 +67,18 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 
+# Configure word boundaries so Option+Delete stops at slashes
+# Remove / from WORDCHARS so it acts as a word separator
+WORDCHARS=${WORDCHARS/\/}
+
+# Custom widget to delete up to the next slash
+backward-kill-path-component() {
+    local WORDCHARS="${WORDCHARS/\/}"
+    zle backward-kill-word
+}
+zle -N backward-kill-path-component
+bindkey '\e\b' backward-kill-path-component  # Option+Delete on macOS
+
 # History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
