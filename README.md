@@ -14,7 +14,8 @@ This repository contains my custom `.zshrc` file, and a theme config using [Oh M
 2. Install [Homebrew](https://brew.sh/).
 3. Run this command to install the necessary dependencies:  
 ```zsh
-brew install jandedobbeleer/oh-my-posh/oh-my-posh fzf zoxide 
+brew tap tobi/try https://github.com/tobi/try
+brew install jandedobbeleer/oh-my-posh/oh-my-posh fzf zoxide eza ripgrep fd try
 ```
 4. Install [uv](https://github.com/astral-sh/uv) (Python package and project manager):
 ```zsh
