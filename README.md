@@ -4,8 +4,7 @@ This repository contains my custom `.zshrc` file, and a theme config using [Oh M
 ## Highlights
 - Minimalistic [OhMyPosh](https://ohmyposh.dev/) theme.
 - [zinit](https://github.com/zdharma-continuum/zinit): zsh plugin manager
-- [fzf](https://github.com/junegunn/fzf): Fuzzy finder.
-- [zoxide](https://github.com/ajeetdsouza/zoxide): Smarter `cd`.
+- [fzf](https://github.com/junegunn/fzf), [zoxide](https://github.com/ajeetdsouza/zoxide), [eza](https://github.com/eza-community/eza), [ripgrep](https://github.com/BurntSushi/ripgrep), [fd](https://github.com/sharkdp/fd), [try](https://github.com/tobi/try)
 - [uv](https://github.com/astral-sh/uv): Fast Python package and project manager
 - Syntax highlighting, completions, autosuggestions.
 
@@ -26,5 +25,6 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uv python install 3.13 --default
 ```
 6. Copy the `.zshrc` file into your `$HOME/.zshrc`
-7. Copy your favorite ohmyposh config to your `$HOME/.config/ohmyposh/config.toml` directory.
-8. Restart your terminal session, or run `source ~/.zshrc`
+7. Copy the `.config/zsh` directory to your `$HOME/.config/zsh`
+8. Copy your favorite ohmyposh config to your `$HOME/.config/ohmyposh/config.toml` directory.
+9. Restart your terminal session, or run `source ~/.zshrc`
